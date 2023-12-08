@@ -2,26 +2,73 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+@media (prefers-color-scheme: light) {
+  :root {
+    --text: #32363f;
+    --background: #e3e8e7;
+    --primary: #bfb0b4;
+    --secondary: #b0c0bc;
+    --accent: #949aaa;
+  }
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+    --text: #c0c4ce;
+    --background: #32363f;
+    --primary: #cdc1c1;
+    --secondary: #b7c5c2;
+    --accent: #565c6c;
   }
 }
 
+html,
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  color: var(--text);
+  background: var(--background);
+}
+
+main {
+  color: var(--text);
+  background-color: var(--background);
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  cursor: pointer;
+  color: var(--primary);
+}
+
+a:hover {
+  color: var(--secondary);
+}
+
+
+.drawer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 13.6rem;
+  height: 100%;
+  background-color: var(--background);
+  transition: transform 0.3s ease-in-out;
+  transform: translateX(-18.75rem);
+  overflow: hidden;
+}
+
+.drawer.open {
+  transform: translateX(0);
+}
+
+.drawer-content li {
+  transition: transform 0.32s ease-in-out;
+}
+
+.drawer-content li:hover {
+  transform: rotateX(360deg);
+  color: var(--accent);
 }
