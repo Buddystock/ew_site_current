@@ -72,3 +72,33 @@ a:hover {
   transform: rotateX(360deg);
   color: var(--accent);
 }
+
+input::-webkit-slider-thumb {
+  appearance: none;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background: var(--text);
+  color: var(--text);
+  cursor: pointer;
+}
+
+input::-moz-range-thumb {
+  appearance: none;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background: var(--text);
+  color: var(--text);
+  cursor: pointer;
+}
+
+input::-ms-thumb {
+  appearance: none;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background: var(--text);
+  color: var(--text);
+  cursor: pointer;
+}

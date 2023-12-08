@@ -7,6 +7,7 @@ const karla = Karla({ subsets: ['latin'] })
 export const metadata: Metadata = {
   title: 'Ellington Willoughby',
   description: 'Ellington Willoughby & the Mythical Squid',
+  icons: '/logo.png',
 }
 
 export default function RootLayout({
