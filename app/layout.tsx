@@ -1,8 +1,8 @@
 import type { Metadata } from 'next'
-import { Karla } from 'next/font/google'
+import { Tilt_Neon } from 'next/font/google'
 import './globals.css'
 
-const karla = Karla({ subsets: ['latin'] })
+const tilt = Tilt_Neon({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
   title: 'Ellington Willoughby',
@@ -17,7 +17,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={karla.className}>{children}</body>
+      <body className={tilt.className}>{children}</body>
     </html>
   )
 }

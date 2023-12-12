@@ -1,13 +1,19 @@
-'use client'
+'use client';
 import React, { useEffect, useState } from 'react';
-import { Howl } from 'howler';
-import { PiPauseDuotone, PiPlayDuotone, PiSkipBackDuotone, PiSkipForwardDuotone, PiStopDuotone } from 'react-icons/pi';
+import { Howl, Howler } from 'howler';
+import {
+  PiPauseDuotone,
+  PiPlayDuotone,
+  PiSkipBackDuotone,
+  PiSkipForwardDuotone,
+  PiStopDuotone,
+} from 'react-icons/pi';
 
-interface AudioPlayerPropType {
+interface AudioPlayerProps {
   playlist: string[];
 }
 
-export default function HowlerAudioPlayer({ playlist }: AudioPlayerPropType) {
+export default function AudioPlayer({ playlist }: AudioPlayerProps) {
   const [currentSongIndex, setCurrentSongIndex] = useState<number>(0);
   const [howl, setHowl] = useState<Howl | null>(null);
 
@@ -17,9 +23,10 @@ export default function HowlerAudioPlayer({ playlist }: AudioPlayerPropType) {
         new Howl({
           src: [playlist[currentSongIndex]],
           preload: true,
-          onload: () => {
-            playSong();
-          }
+          html5: true,
+          autoplay: false,
+          volume: 0.5,
+          onend: () => playNextSong()
         })
       );
     }
@@ -31,18 +38,16 @@ export default function HowlerAudioPlayer({ playlist }: AudioPlayerPropType) {
         howl.unload();
       }
     };
-
   }, [playlist, currentSongIndex]);
 
-  function playSong() {
-    if (howl) {
-      howl.play();
-    }
-  }
+  
 
-  function pauseSong() {
-    if (howl) {
+
+  function handlePlayPause() {
+    if (howl && howl.playing()) {
       howl.pause();
+    } else {
+      howl?.play();
     }
   }
 
@@ -70,12 +75,17 @@ export default function HowlerAudioPlayer({ playlist }: AudioPlayerPropType) {
     <section className="m-4">
       <div className="flex justify-between items-center">
         <div className="control  flex flex-col justify-start items-center">
-          <PiPlayDuotone size={24} />
-          <button onClick={playSong}>Play</button>
-        </div>
-        <div className="control  flex flex-col justify-start items-center">
-          <PiPauseDuotone size={24} />
-          <button onClick={pauseSong}>Pause</button>
+          {howl?.playing() ? (
+            <>
+              <PiPauseDuotone size={24} />
+              <button onClick={handlePlayPause}>Pause</button>
+            </>
+          ) : (
+            <>
+              <PiPlayDuotone size={24} />
+              <button onClick={handlePlayPause}>Play</button>
+            </>
+          )}
         </div>
         <div className="control  flex flex-col justify-start items-center">
           <PiStopDuotone size={24} />
@@ -91,7 +101,15 @@ export default function HowlerAudioPlayer({ playlist }: AudioPlayerPropType) {
         </div>
         <div className="control flex flex-col justify-start items-center">
           <input
-            style={{ width: '100%', marginTop: '.4rem', appearance: 'none', background: '#e3e8e7', borderRadius: '8px', height: '5px', color: '#444140' }}
+            style={{
+              width: '100%',
+              marginTop: '.4rem',
+              appearance: 'none',
+              background: '#e3e8e7',
+              borderRadius: '8px',
+              height: '5px',
+              color: '#444140',
+            }}
             id="volume"
             name="volume"
             type="range"
@@ -105,4 +123,4 @@ export default function HowlerAudioPlayer({ playlist }: AudioPlayerPropType) {
       </div>
     </section>
   );
-};
+}

@@ -1,7 +1,7 @@
 import Image from 'next/image'
-import Navigation from '../components/Navigation'
+import Navigation from '@/components/Navigation'
 import AudioPlayer from '@/components/AudioPlayer'
-import { playlist } from '../lib/data'
+import { playlist } from '@/lib/data'
 
 export default function Home() {
   return (
@@ -14,7 +14,12 @@ export default function Home() {
         className="absolute top-6 right-6 p-4"
       />
       <Navigation />
-      <h1 className="text-6xl font-light p-6 border-4 border-neutral-300">Ellington Willoughby</h1>
+      <h1 className="text-6xl font-light p-6 border-4 border-neutral-300">
+        Ellington Willoughby
+        <h2 className="text-center text-3xl font-light">
+          & the Mythical Squid
+        </h2>
+      </h1>
       <section className="container max-w-lg max-h-60 h-48 w-full">
         <div className="">
           <AudioPlayer playlist={playlist} />
