@@ -40,7 +40,7 @@ export default function AudioPlayer({ playlist }: AudioPlayerProps) {
     };
   }, [playlist, currentSongIndex]);
 
-  
+
 
 
   function handlePlayPause() {
@@ -72,54 +72,52 @@ export default function AudioPlayer({ playlist }: AudioPlayerProps) {
   }
 
   return (
-    <section className="m-4">
-      <div className="flex justify-between items-center">
-        <div className="control  flex flex-col justify-start items-center">
-          {howl?.playing() ? (
-            <>
-              <PiPauseDuotone size={24} />
-              <button onClick={handlePlayPause}>Pause</button>
-            </>
-          ) : (
-            <>
-              <PiPlayDuotone size={24} />
-              <button onClick={handlePlayPause}>Play</button>
-            </>
-          )}
-        </div>
-        <div className="control  flex flex-col justify-start items-center">
-          <PiStopDuotone size={24} />
-          <button onClick={stopSong}>Stop</button>
-        </div>
-        <div className="control  flex flex-col justify-start items-center">
-          <PiSkipBackDuotone size={24} />
-          <button onClick={playPreviousSong}>Previous</button>
-        </div>
-        <div className="control  flex flex-col justify-start items-center">
-          <PiSkipForwardDuotone size={24} />
-          <button onClick={playNextSong}>Next</button>
-        </div>
-        <div className="control flex flex-col justify-start items-center">
-          <input
-            style={{
-              width: '100%',
-              marginTop: '.4rem',
-              appearance: 'none',
-              background: '#e3e8e7',
-              borderRadius: '8px',
-              height: '5px',
-              color: '#444140',
-            }}
-            id="volume"
-            name="volume"
-            type="range"
-            max="1"
-            step="0.1"
-            value="1"
-            onChange={(e) => setSongVolume(parseFloat(e.target.value))}
-          />
-          <label htmlFor="volume">Volume</label>
-        </div>
+    <section className="w-full h-full mx-auto flex justify-between items-center p-8">
+      <div className="control flex flex-col justify-end items-center">
+        {howl?.playing() ? (
+          <>
+            <PiPauseDuotone size={24} />
+            <button onClick={handlePlayPause}>Pause</button>
+          </>
+        ) : (
+          <>
+            <PiPlayDuotone size={24} />
+            <button onClick={handlePlayPause}>Play</button>
+          </>
+        )}
+      </div>
+      <div className="control  flex flex-col justify-start items-center">
+        <PiStopDuotone size={24} />
+        <button onClick={stopSong}>Stop</button>
+      </div>
+      <div className="control  flex flex-col justify-start items-center">
+        <PiSkipBackDuotone size={24} />
+        <button onClick={playPreviousSong}>Previous</button>
+      </div>
+      <div className="control  flex flex-col justify-start items-center">
+        <PiSkipForwardDuotone size={24} />
+        <button onClick={playNextSong}>Next</button>
+      </div>
+      <div className="control flex flex-col justify-start items-center">
+        <input
+          style={{
+            width: '100%',
+            marginTop: '.4rem',
+            appearance: 'none',
+            background: '#e3e8e7',
+            borderRadius: '8px',
+            height: '5px',
+            color: '#444140',
+          }}
+          id="volume"
+          name="volume"
+          type="range"
+          max="1"
+          step="0.1"
+          value="1"
+          onChange={(e) => setSongVolume(parseFloat(e.target.value))}
+        />
+        <label htmlFor="volume">Volume</label>
       </div>
     </section>
   );
