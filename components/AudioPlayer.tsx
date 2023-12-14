@@ -1,5 +1,5 @@
 'use client';
-import React, { useEffect, useState } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import { Howl, Howler } from 'howler';
 import {
   PiPauseDuotone,
@@ -8,12 +8,14 @@ import {
   PiSkipForwardDuotone,
   PiStopDuotone,
 } from 'react-icons/pi';
+import VolumeKnob from './VolumeKnob';
 
 interface AudioPlayerProps {
   playlist: string[];
 }
 
 export default function AudioPlayer({ playlist }: AudioPlayerProps) {
+  const sound = useRef<Howl | null>(null);
   const [currentSongIndex, setCurrentSongIndex] = useState<number>(0);
   const [howl, setHowl] = useState<Howl | null>(null);
 
@@ -40,9 +42,6 @@ export default function AudioPlayer({ playlist }: AudioPlayerProps) {
     };
   }, [playlist, currentSongIndex]);
 
-
-
-
   function handlePlayPause() {
     if (howl && howl.playing()) {
       howl.pause();
@@ -63,12 +62,6 @@ export default function AudioPlayer({ playlist }: AudioPlayerProps) {
 
   function playPreviousSong() {
     setCurrentSongIndex((prevIndex) => (prevIndex - 1 + playlist.length) % playlist.length);
-  }
-
-  function setSongVolume(value: number) {
-    if (howl) {
-      howl.volume(value);
-    }
   }
 
   return (
@@ -98,27 +91,7 @@ export default function AudioPlayer({ playlist }: AudioPlayerProps) {
         <PiSkipForwardDuotone size={24} />
         <button onClick={playNextSong}>Next</button>
       </div>
-      <div className="control flex flex-col justify-start items-center">
-        <input
-          style={{
-            width: '100%',
-            marginTop: '.4rem',
-            appearance: 'none',
-            background: '#e3e8e7',
-            borderRadius: '8px',
-            height: '5px',
-            color: '#444140',
-          }}
-          id="volume"
-          name="volume"
-          type="range"
-          max="1"
-          step="0.1"
-          value="1"
-          onChange={(e) => setSongVolume(parseFloat(e.target.value))}
-        />
-        <label htmlFor="volume">Volume</label>
-      </div>
+     <VolumeKnob sound={sound} />
     </section>
   );
 }
