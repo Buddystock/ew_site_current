@@ -1,6 +1,6 @@
 'use client';
-import React, { useRef, useEffect, useState } from 'react';
-import { Howl, Howler } from 'howler';
+import React, { useEffect, useState } from 'react';
+import { Howl } from 'howler';
 import {
   PiPauseDuotone,
   PiPlayDuotone,
@@ -8,16 +8,15 @@ import {
   PiSkipForwardDuotone,
   PiStopDuotone,
 } from 'react-icons/pi';
-import VolumeKnob from './VolumeKnob';
 
 interface AudioPlayerProps {
   playlist: string[];
 }
 
 export default function AudioPlayer({ playlist }: AudioPlayerProps) {
-  const sound = useRef<Howl | null>(null);
-  const [currentSongIndex, setCurrentSongIndex] = useState<number>(0);
   const [howl, setHowl] = useState<Howl | null>(null);
+  const [currentSongIndex, setCurrentSongIndex] = useState<number>(0);
+  const [volume, setVolume] = useState<number>(0.5);
 
   useEffect(() => {
     function initializeAudio() {
@@ -25,10 +24,8 @@ export default function AudioPlayer({ playlist }: AudioPlayerProps) {
         new Howl({
           src: [playlist[currentSongIndex]],
           preload: true,
-          html5: true,
           autoplay: false,
-          volume: 0.5,
-          onend: () => playNextSong()
+          volume: volume,
         })
       );
     }
@@ -40,15 +37,20 @@ export default function AudioPlayer({ playlist }: AudioPlayerProps) {
         howl.unload();
       }
     };
-  }, [playlist, currentSongIndex]);
+  }, [playlist, currentSongIndex, volume]);
 
-  function handlePlayPause() {
-    if (howl && howl.playing()) {
-      howl.pause();
-    } else {
-      howl?.play();
+  function handlePlay() {
+    if (howl) {
+      howl.play();
     }
   }
+
+  function handlePause() {
+    if (howl && howl?.playing()) {
+      howl.pause()
+    }
+  }
+
 
   function stopSong() {
     if (howl) {
@@ -60,8 +62,17 @@ export default function AudioPlayer({ playlist }: AudioPlayerProps) {
     setCurrentSongIndex((prevIndex) => (prevIndex + 1) % playlist.length);
   }
 
-  function playPreviousSong() {
-    setCurrentSongIndex((prevIndex) => (prevIndex - 1 + playlist.length) % playlist.length);
+  function previousSong() {
+    setCurrentSongIndex((prevIndex) => ((prevIndex - 1 + playlist.length) % playlist.length));
+  }
+
+  function handleVolumeChange(event: React.ChangeEvent<HTMLInputElement>) {
+    const newVolume = parseFloat(event.target.value);
+    console.log('🧶🧶🧶 ~ file: AudioPlayer.tsx:67 ~ handleVolumeChange ~ newVolume:', newVolume)
+    setVolume(newVolume);
+    if (howl) {
+      howl.volume(newVolume);
+    }
   }
 
   return (
@@ -69,29 +80,48 @@ export default function AudioPlayer({ playlist }: AudioPlayerProps) {
       <div className="control flex flex-col justify-end items-center">
         {howl?.playing() ? (
           <>
-            <PiPauseDuotone size={24} />
-            <button onClick={handlePlayPause}>Pause</button>
+            <button onClick={handlePause}>
+              <PiPauseDuotone size={24} />
+              Pause
+            </button>
           </>
         ) : (
           <>
-            <PiPlayDuotone size={24} />
-            <button onClick={handlePlayPause}>Play</button>
+            <button onClick={handlePlay}>
+              <PiPlayDuotone size={24} />
+              Play
+            </button>
           </>
         )}
       </div>
-      <div className="control  flex flex-col justify-start items-center">
-        <PiStopDuotone size={24} />
-        <button onClick={stopSong}>Stop</button>
+      <div className="control flex flex-col justify-start items-center">
+        <button onClick={stopSong}>
+          <PiStopDuotone size={24} />
+          Stop
+        </button>
       </div>
-      <div className="control  flex flex-col justify-start items-center">
-        <PiSkipBackDuotone size={24} />
-        <button onClick={playPreviousSong}>Previous</button>
+      <div className="control flex flex-col justify-start items-center">
+        <button onClick={previousSong}>
+          <PiSkipBackDuotone size={24} />
+          Previous
+        </button>
       </div>
-      <div className="control  flex flex-col justify-start items-center">
-        <PiSkipForwardDuotone size={24} />
-        <button onClick={playNextSong}>Next</button>
+      <div className="control flex flex-col justify-start items-center">
+        <button onClick={playNextSong}>
+          <PiSkipForwardDuotone size={24} />
+          Next
+        </button>
       </div>
-     <VolumeKnob sound={sound} />
+      <div className="control flex flex-col justify-start items-center">
+        <input
+          type="range"
+          min="0"
+          max="1"
+          step="0.01"
+          value={volume}
+          onChange={handleVolumeChange}
+        />
+      </div>
     </section>
   );
 }

@@ -24,7 +24,7 @@ export default function DrawerComponent() {
           <PiXLight className="hover:cursor-pointer bg-neutral-500" size={20} onClick={toggleDrawer} />
           <ul className="flex flex-col items-start justify-evenly">
             <li className="text-base/4 font-light tracking-tighter subpixel-antialiased py-6">
-              <Link href="/home" className="text-lg hover:cursor-pointer">home</Link>
+              <Link href="/" className="text-lg hover:cursor-pointer">home</Link>
             </li>
             <li className="text-base/4 font-light tracking-tighter subpixel-antialiased py-6">
               <Link href="/about" className="text-lg hover:cursor-pointer">about</Link>

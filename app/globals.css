@@ -4,7 +4,7 @@
 
 @media (prefers-color-scheme: light) {
   :root {
-    --text: #32363f;
+    --text: #404145;
     --background: #e3e8e7;
     --primary: #bfb0b4;
     --secondary: #b0c0bc;
@@ -15,7 +15,7 @@
 @media (prefers-color-scheme: dark) {
   :root {
     --text: #c0c4ce;
-    --background: #32363f;
+    --background: #404145;
     --primary: #cdc1c1;
     --secondary: #b7c5c2;
     --accent: #565c6c;
@@ -47,7 +47,6 @@ a {
 a:hover {
   color: var(--accent);
 }
-
 
 .drawer {
   position: absolute;
