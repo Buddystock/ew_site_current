@@ -17,6 +17,7 @@ export default function AudioPlayer({ playlist }: AudioPlayerProps) {
   const [howl, setHowl] = useState<Howl | null>(null);
   const [currentSongIndex, setCurrentSongIndex] = useState<number>(0);
   const [volume, setVolume] = useState<number>(0.5);
+  const [isPlaying, setIsPlaying] = useState<boolean>(false);
 
   useEffect(() => {
     function initializeAudio() {
@@ -37,18 +38,24 @@ export default function AudioPlayer({ playlist }: AudioPlayerProps) {
         howl.unload();
       }
     };
-  }, [playlist, currentSongIndex, volume]);
+  }, [playlist, currentSongIndex]);
+
+  useEffect(() => {
+    setVolume(volume);
+  }, [volume]);
 
   function handlePlay() {
     if (howl) {
       howl.play();
     }
+    setIsPlaying(true);
   }
 
   function handlePause() {
     if (howl && howl?.playing()) {
       howl.pause()
     }
+    setIsPlaying(false);
   }
 
 
@@ -68,7 +75,6 @@ export default function AudioPlayer({ playlist }: AudioPlayerProps) {
 
   function handleVolumeChange(event: React.ChangeEvent<HTMLInputElement>) {
     const newVolume = parseFloat(event.target.value);
-    console.log('🧶🧶🧶 ~ file: AudioPlayer.tsx:67 ~ handleVolumeChange ~ newVolume:', newVolume)
     setVolume(newVolume);
     if (howl) {
       howl.volume(newVolume);
