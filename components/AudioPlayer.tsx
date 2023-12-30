@@ -83,43 +83,41 @@ export default function AudioPlayer({ playlist }: AudioPlayerProps) {
 
   return (
     <section className="w-full h-full mx-auto flex justify-between items-center p-8">
-      <div className="control flex flex-col justify-end items-center">
+      <div className="flex justify-center items-center">
         {howl?.playing() ? (
-          <>
-            <button onClick={handlePause}>
-              <PiPauseDuotone size={24} />
-              Pause
-            </button>
-          </>
+          <button onClick={handlePause} className="control flex flex-col justify-center items-center">
+            <PiPauseDuotone size={24} />
+            Pause
+          </button>
         ) : (
-          <>
-            <button onClick={handlePlay}>
-              <PiPlayDuotone size={24} />
-              Play
-            </button>
-          </>
+          <button onClick={handlePlay} className="control flex flex-col justify-center items-center">
+            <PiPlayDuotone size={24} />
+            Play
+          </button>
         )}
       </div>
-      <div className="control flex flex-col justify-start items-center">
-        <button onClick={stopSong}>
+      <div className="flex justify-center items-center">
+        <button onClick={stopSong} className="control flex flex-col justify-center items-center">
           <PiStopDuotone size={24} />
           Stop
         </button>
       </div>
-      <div className="control flex flex-col justify-start items-center">
-        <button onClick={previousSong}>
+      <div className="flex justify-center items-center">
+        <button onClick={previousSong} className="control flex flex-col justify-center items-center">
           <PiSkipBackDuotone size={24} />
           Previous
         </button>
       </div>
-      <div className="control flex flex-col justify-start items-center">
-        <button onClick={playNextSong}>
+      <div className="flex justify-center items-center">
+        <button onClick={playNextSong} className="control flex flex-col justify-center items-center">
           <PiSkipForwardDuotone size={24} />
           Next
         </button>
       </div>
-      <div className="control flex flex-col justify-start items-center">
+      <div className="slidecontainer flex justify-center items-center">
         <input
+          className="slider"
+          id="volume"
           type="range"
           min="0"
           max="1"

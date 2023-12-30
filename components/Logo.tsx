@@ -10,6 +10,7 @@ export default function Logo() {
         width={450}
         alt="ellington willoughby logo"
         className="p-4"
+        priority={true}
       />
     </div>
   )

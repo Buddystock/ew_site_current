@@ -21,7 +21,7 @@ export default function DrawerComponent() {
       <PiListLight size={32} className="absolute top-6 left-6  hover:cursor-pointer" onClick={toggleDrawer} style={{ visibility: `${drawerOpen ? 'hidden' : ''}` }} />
       <div className={`drawer ${drawerOpen ? 'open' : ''}  bg-transparent`}>
         <nav className="drawer-content flex flex-col h-full p-8">
-          <PiXLight className="hover:cursor-pointer bg-neutral-500" size={20} onClick={toggleDrawer} />
+          <PiXLight className="hover:cursor-pointer" size={20} onClick={toggleDrawer} />
           <ul className="flex flex-col items-start justify-evenly">
             <li className="text-base/4 font-light tracking-tighter subpixel-antialiased py-6">
               <Link href="/" className="text-lg hover:cursor-pointer">home</Link>

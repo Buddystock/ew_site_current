@@ -30,8 +30,11 @@ body {
 }
 
 main {
-  color: var(--text);
-  background-color: var(--background);
+  background-image: url('/images/lavalamp.gif');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+
 }
 
 ul {
@@ -46,20 +49,6 @@ a {
 
 a:hover {
   color: var(--accent);
-}
-
-.icon {
-  background-color: var(--background);
-  color: var(--text);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-}
-
-.icon:active {
-  background-color: var(--primary);
 }
 
 .drawer {
@@ -82,50 +71,51 @@ a:hover {
   transition: transform 0.32s ease-in-out;
 }
 
-.drawer-content li:hover {
-  transform: rotateX(360deg);
-  color: var(--accent);
+.control {
+  opacity: 0.9;
+
 }
 
-.player {
+.control:hover {
+  opacity: 1;
+}
+
+.slidecontainer {
+  width: 25%;
+}
+
+.slider {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 0.55rem;
   background: var(--primary);
+  outline: none;
+  opacity: 0.7;
+  -webkit-transition: .2s;
+  transition: opacity .2s;
+  border-radius: 5px;
 }
 
-.volume {
-  color: var(--text);
-  background-color: var(--background);
+.slider:hover {
+  opacity: 1;
 }
 
-input::-webkit-slider-thumb {
-  /* appearance: none; */
-  width: 15px;
-  height: 15px;
-  border-radius: 50%;
-  background: var(--background);
-  color: var(--text);
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 1rem;
+  height: 1rem;
+  background: var(--text);
   cursor: pointer;
-}
-
-input::-moz-range-thumb {
-  /* appearance: none; */
-  width: 15px;
-  height: 15px;
   border-radius: 50%;
-  background-color: var(--background);
-  color: var(--text);
-  cursor: pointer;
 }
 
-input::-ms-thumb {
-  /* appearance: none; */
-  width: 15px;
-  height: 15px;
+.slider::-moz-range-thumb {
+  width: 25px;
+  height: 1rem;
+  background: var(--text);
+  cursor: pointer;
   border-radius: 50%;
-  background: var(--background);
-  color: var(--text);
-  cursor: pointer;
-}
-
-#homelogo {
-  fill: var(--text);
 }
