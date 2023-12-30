@@ -3,6 +3,7 @@ import Link from 'next/link'
 import Navigation from '@/components/Navigation'
 import AudioPlayer from '@/components/AudioPlayer'
 import { playlist } from '@/lib/data'
+import Logo from '@/components/Logo'
 
 export default function Home() {
   return (
@@ -14,13 +15,7 @@ export default function Home() {
             Ellington Willoughby and the Mythical Squid
           </Link>
         </h1>
-        <Image
-          src="/images/golo.png"
-          height={450}
-          width={450}
-          alt="ellington willoughby logo"
-          className="p-4"
-        />
+        <Logo />
         <p className="body text-center text-2xl">
           Ellington Willoughby and the Mythical Squid is a high energy psychedelic pop six piece from S.E. Portland. Funky Grooves back singer-songwriter melodies to take you on a genre bending journey that is both far out and close to home. The arrival is unexpected. You'll be glad you took the trip.
         </p>
