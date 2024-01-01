@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react'
 import Link from 'next/link'
-import { PiXLight, PiListLight } from 'react-icons/pi'
+import { PiX, PiList } from 'react-icons/pi'
 
 interface DrawerComponentProps {
   isOpen: boolean;
@@ -18,10 +18,10 @@ export default function DrawerComponent() {
 
   return (
     <section>
-      <PiListLight size={32} className="absolute top-6 left-6  hover:cursor-pointer" onClick={toggleDrawer} style={{ visibility: `${drawerOpen ? 'hidden' : ''}` }} />
+      <PiList size={32} className="absolute top-6 left-6  hover:cursor-pointer" onClick={toggleDrawer} style={{ visibility: `${drawerOpen ? 'hidden' : ''}` }} />
       <div className={`drawer ${drawerOpen ? 'open' : ''}  bg-transparent`}>
         <nav className="drawer-content flex flex-col h-full p-8">
-          <PiXLight className="hover:cursor-pointer" size={20} onClick={toggleDrawer} />
+          <PiX className="hover:cursor-pointer" size={20} onClick={toggleDrawer} />
           <ul className="flex flex-col items-start justify-evenly">
             <li className="text-base/4 font-light tracking-tighter subpixel-antialiased py-6">
               <Link href="/" className="text-lg hover:cursor-pointer">home</Link>

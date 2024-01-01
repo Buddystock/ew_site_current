@@ -16,7 +16,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inconsolata.className}>{children}</body>
+      <body className={inconsolata.className}>
+        {children}
+      </body>
     </html>
   )
 }

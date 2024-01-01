@@ -82,34 +82,34 @@ export default function AudioPlayer({ playlist }: AudioPlayerProps) {
   }
 
   return (
-    <section className="w-full h-full mx-auto flex justify-between items-center p-8">
+    <section className=" absolute left-1/2 transform -translate-x-1/2 bottom-4 z-10 w-full h-full mx-auto flex justify-between items-center p-8">
       <div className="flex justify-center items-center">
         {howl?.playing() ? (
-          <button onClick={handlePause} className="control flex flex-col justify-center items-center">
+          <button onClick={handlePause} className="flex flex-col justify-center items-center">
             <PiPauseDuotone size={24} />
             Pause
           </button>
         ) : (
-          <button onClick={handlePlay} className="control flex flex-col justify-center items-center">
+          <button onClick={handlePlay} className="flex flex-col justify-center items-center">
             <PiPlayDuotone size={24} />
             Play
           </button>
         )}
       </div>
       <div className="flex justify-center items-center">
-        <button onClick={stopSong} className="control flex flex-col justify-center items-center">
+        <button onClick={stopSong} className="flex flex-col justify-center items-center">
           <PiStopDuotone size={24} />
           Stop
         </button>
       </div>
       <div className="flex justify-center items-center">
-        <button onClick={previousSong} className="control flex flex-col justify-center items-center">
+        <button onClick={previousSong} className="flex flex-col justify-center items-center">
           <PiSkipBackDuotone size={24} />
           Previous
         </button>
       </div>
       <div className="flex justify-center items-center">
-        <button onClick={playNextSong} className="control flex flex-col justify-center items-center">
+        <button onClick={playNextSong} className="flex flex-col justify-center items-center">
           <PiSkipForwardDuotone size={24} />
           Next
         </button>
@@ -117,7 +117,6 @@ export default function AudioPlayer({ playlist }: AudioPlayerProps) {
       <div className="slidecontainer flex justify-center items-center">
         <input
           className="slider"
-          id="volume"
           type="range"
           min="0"
           max="1"

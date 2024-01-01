@@ -29,14 +29,6 @@ body {
   font-weight: 300;
 }
 
-main {
-  background-image: url('/images/lavalamp.gif');
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-attachment: fixed;
-
-}
-
 ul {
   list-style: none;
 }
@@ -55,7 +47,7 @@ a:hover {
   position: absolute;
   top: 0;
   left: 0;
-  width: 13.6rem;
+  width: 13rem;
   height: 100%;
   background-color: hsla(12, 20%, 95%, 0);
   transition: transform 0.3s ease-in-out;
@@ -69,15 +61,6 @@ a:hover {
 
 .drawer-content li {
   transition: transform 0.32s ease-in-out;
-}
-
-.control {
-  opacity: 0.9;
-
-}
-
-.control:hover {
-  opacity: 1;
 }
 
 .slidecontainer {
@@ -113,7 +96,9 @@ a:hover {
 }
 
 .slider::-moz-range-thumb {
-  width: 25px;
+  -moz-appearance: none;
+  appearance: none;
+  width: 1rem;
   height: 1rem;
   background: var(--text);
   cursor: pointer;

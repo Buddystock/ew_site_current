@@ -6,8 +6,8 @@ export default function Logo() {
       <Image
         id="homelogo"
         src="/images/ew_logo.svg"
-        height={450}
-        width={450}
+        height={500}
+        width={500}
         alt="ellington willoughby logo"
         className="p-4"
         priority={true}
