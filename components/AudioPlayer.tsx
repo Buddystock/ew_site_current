@@ -2,12 +2,13 @@
 import React, { useEffect, useState } from 'react';
 import { Howl } from 'howler';
 import {
-  PiPauseDuotone,
-  PiPlayDuotone,
-  PiSkipBackDuotone,
-  PiSkipForwardDuotone,
-  PiStopDuotone,
+  PiPause,
+  PiPlay,
+  PiSkipBack,
+  PiSkipForward,
+  PiStop,
 } from 'react-icons/pi';
+import HoverText from './HoverText';
 
 interface AudioPlayerProps {
   playlist: string[];
@@ -86,32 +87,32 @@ export default function AudioPlayer({ playlist }: AudioPlayerProps) {
       <div className="flex justify-center items-center">
         {howl?.playing() ? (
           <button onClick={handlePause} className="flex flex-col justify-center items-center">
-            <PiPauseDuotone size={24} />
-            Pause
+            <PiPause size={32} weight="bold" color="#404140" />
+            <HoverText text="Pause" />
           </button>
         ) : (
           <button onClick={handlePlay} className="flex flex-col justify-center items-center">
-            <PiPlayDuotone size={24} />
-            Play
+            <PiPlay size={32} weight="fill" color="#404140" />
+            <HoverText text="Play" />
           </button>
         )}
       </div>
       <div className="flex justify-center items-center">
         <button onClick={stopSong} className="flex flex-col justify-center items-center">
-          <PiStopDuotone size={24} />
-          Stop
+          <PiStop size={32} weight="bold" color="#404140" />
+          <HoverText text="Stop" />
         </button>
       </div>
       <div className="flex justify-center items-center">
         <button onClick={previousSong} className="flex flex-col justify-center items-center">
-          <PiSkipBackDuotone size={24} />
-          Previous
+          <PiSkipBack size={32} weight="bold" color="#404140" />
+          <HoverText text="Previous" />
         </button>
       </div>
       <div className="flex justify-center items-center">
         <button onClick={playNextSong} className="flex flex-col justify-center items-center">
-          <PiSkipForwardDuotone size={24} />
-          Next
+          <PiSkipForward size={32} weight="bold" color="#404140" />
+          <HoverText text="Next" />
         </button>
       </div>
       <div className="slidecontainer flex justify-center items-center">

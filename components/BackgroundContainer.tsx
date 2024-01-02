@@ -14,13 +14,15 @@ export default function BackgroundContainer({
 
   const containerStyle: React.CSSProperties = {
     position: 'relative',
+    height: '100%',
+    width: '100%'
   };
 
   const backgroundStyle: React.CSSProperties = {
     backgroundImage: `url(${backgroundImage})`,
     backgroundRepeat: 'no-repeat',
     backgroundSize: 'cover',
-    backgroundAttachment: 'fixed',
+    backgroundAttachment: 'scroll',
     backgroundPosition: 'center',
     opacity,
     zIndex: 0,

@@ -17,33 +17,46 @@ export default function DrawerComponent() {
   }
 
   return (
-    <section>
-      <PiList size={32} className="absolute top-6 left-6  hover:cursor-pointer" onClick={toggleDrawer} style={{ visibility: `${drawerOpen ? 'hidden' : ''}` }} />
-      <div className={`drawer ${drawerOpen ? 'open' : ''}  bg-transparent`}>
-        <nav className="drawer-content flex flex-col h-full p-8">
-          <PiX className="hover:cursor-pointer" size={20} onClick={toggleDrawer} />
-          <ul className="flex flex-col items-start justify-evenly">
-            <li className="text-base/4 font-light tracking-tighter subpixel-antialiased py-6">
-              <Link href="/" className="text-lg hover:cursor-pointer">home</Link>
-            </li>
-            <li className="text-base/4 font-light tracking-tighter subpixel-antialiased py-6">
-              <Link href="/about" className="text-lg hover:cursor-pointer">about</Link>
-            </li>
-            <li className="text-base/4 font-light tracking-tighter subpixel-antialiased py-6">
-              <Link href="/discography" className="text-lg hover:cursor-pointer">music</Link>
-            </li>
-            <li className="text-base/4 font-light tracking-tighter subpixel-antialiased py-6">
-              <Link href="/shows" className="text-lg hover:cursor-pointer">shows</Link>
-            </li>
-            <li className="text-base/4 font-light tracking-tighter subpixel-antialiased py-6">
-              <Link href="/merchandise" className="text-lg hover:cursor-pointer">merchandise</Link>
-            </li>
-            <li className="text-base/4 font-light tracking-tighter subpixel-antialiased py-6">
-              <Link href="/contact" className="text-lg hover:cursor-pointer">contact</Link>
-            </li>
-          </ul>
-        </nav>
-      </div>
-    </section>
+    <>
+      <PiList
+        size={32}
+        className={`icon list ${drawerOpen ? 'invisible' : ''}`}
+        onClick={toggleDrawer}
+      />
+
+      <nav className={`h-full p-2 flex flex-col justify-evenly items-start drawer ${drawerOpen ? 'open' : ''} bg-transparent`}>
+
+        <PiX
+          className="icon close"
+          size={20}
+          onClick={toggleDrawer}
+        />
+
+        <ul className="relative bottom-8 drawer-content flex flex-col items-start justify-end">
+
+          <li className="pb-8 ml-4">
+            <Link href="/" className="text-xl/6"
+            >home</Link>
+          </li>
+
+          <li className="py-8 ml-4">
+            <Link href="/about" className="text-xl/6">about</Link>
+          </li>
+
+          <li className="py-8 ml-4">
+            <Link href="/music" className="text-xl/6">music</Link>
+          </li>
+
+          <li className="py-8 ml-4">
+            <Link href="/shows" className="text-xl/6">shows</Link>
+          </li>
+
+          <li className="pt-8 ml-4">
+            <Link href="/contact" className="text-xl/6">contact</Link>
+          </li>
+
+        </ul>
+      </nav>
+    </>
   );
 };
